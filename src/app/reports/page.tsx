@@ -28,6 +28,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { DashboardLayout } from "@/components/dashboard-layout";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -199,13 +200,13 @@ export default function ReportsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout title="Reports & Analytics" description="Generate, view, and download performance reports">
+      <div className="space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold gradient-text flex items-center gap-3">
-              <FileText className="w-8 h-8 text-primary" />
+            <h1 className="text-2xl md:text-3xl font-bold gradient-text flex items-center gap-3">
+              <FileText className="w-6 h-6 md:w-8 md:h-8 text-primary" />
               Reports & Analytics
             </h1>
             <p className="text-muted-foreground">
@@ -294,7 +295,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <Card className="glass-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -498,7 +499,7 @@ export default function ReportsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { title: "Weekly Performance", desc: "Database performance summary", icon: TrendingUp, color: "bg-blue-100 text-blue-600" },
                 { title: "Query Analysis", desc: "Slow query identification", icon: BarChart3, color: "bg-green-100 text-green-600" },
@@ -523,6 +524,6 @@ export default function ReportsPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

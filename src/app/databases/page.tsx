@@ -43,6 +43,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { DashboardLayout } from "@/components/dashboard-layout";
 
 interface DatabaseConnection {
   id: string;
@@ -173,10 +174,10 @@ export default function DatabasesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout title="Database Connections" description="Manage and monitor your database connections">
+      <div className="space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold gradient-text">Database Connections</h1>
             <p className="text-muted-foreground">Manage and monitor your database connections</p>
@@ -417,6 +418,6 @@ export default function DatabasesPage() {
           </Card>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

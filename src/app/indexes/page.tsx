@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { DashboardLayout } from "@/components/dashboard-layout";
 import {
   Dialog,
   DialogContent,
@@ -155,13 +156,13 @@ export default function IndexAdvisorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout title="AI Index Advisor" description="Intelligent index recommendations based on query analysis">
+      <div className="space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold gradient-text flex items-center gap-3">
-              <Search className="w-8 h-8 text-primary" />
+            <h1 className="text-2xl md:text-3xl font-bold gradient-text flex items-center gap-3">
+              <Search className="w-6 h-6 md:w-8 md:h-8 text-primary" />
               AI Index Advisor
             </h1>
             <p className="text-muted-foreground">
@@ -194,7 +195,7 @@ export default function IndexAdvisorPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <Card className="glass-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -439,7 +440,7 @@ export default function IndexAdvisorPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { title: "Selective Columns", desc: "Index columns used in WHERE, JOIN, and ORDER BY", icon: Search },
                 { title: "Cardinality", desc: "Index columns with high cardinality (many unique values)", icon: BarChart3 },
@@ -462,6 +463,6 @@ export default function IndexAdvisorPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

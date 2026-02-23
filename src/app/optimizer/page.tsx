@@ -27,6 +27,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { DashboardLayout } from "@/components/dashboard-layout";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 
 const performanceComparison = [
@@ -127,32 +128,32 @@ LIMIT 1000`,
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout title="AI Query Optimizer" description="Analyze and optimize your SQL queries with AI-powered recommendations">
+      <div className="space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold gradient-text flex items-center gap-3">
-              <Zap className="w-8 h-8 text-warning" />
+            <h1 className="text-2xl md:text-3xl font-bold gradient-text flex items-center gap-3">
+              <Zap className="w-6 h-6 md:w-8 md:h-8 text-warning" />
               AI Query Optimizer
             </h1>
             <p className="text-muted-foreground">
               Analyze and optimize your SQL queries with AI-powered recommendations
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-2 md:gap-3">
             <Button variant="outline" className="gap-2">
               <History className="w-4 h-4" />
-              History
+              <span className="hidden sm:inline">History</span>
             </Button>
             <Button variant="outline" className="gap-2">
               <Save className="w-4 h-4" />
-              Save Query
+              <span className="hidden sm:inline">Save Query</span>
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* Query Input */}
           <Card className="glass-card">
             <CardHeader>
@@ -168,7 +169,7 @@ LIMIT 1000`,
               <Textarea
                 value={query}
                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setQuery(e.target.value)}
-                className="min-h-[300px] font-mono text-sm"
+                className="min-h-[200px] md:min-h-[300px] font-mono text-sm"
                 placeholder="Enter your SQL query here..."
               />
               <div className="flex gap-3">
@@ -240,9 +241,9 @@ LIMIT 1000`,
             </Card>
           ) : (
             <Card className="glass-card">
-              <CardContent className="flex flex-col items-center justify-center min-h-[400px] text-center">
-                <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
-                  <Sparkles className="w-10 h-10 text-muted-foreground" />
+              <CardContent className="flex flex-col items-center justify-center min-h-[300px] md:min-h-[400px] text-center p-6">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted flex items-center justify-center mb-4">
+                  <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-muted-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Ready to Optimize</h3>
                 <p className="text-muted-foreground max-w-sm">
@@ -256,7 +257,7 @@ LIMIT 1000`,
         {/* Analysis Results */}
         {optimizationResults && (
           <Tabs defaultValue="improvements" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 max-w-md">
+            <TabsList className="grid w-full grid-cols-3 max-w-md mx-auto">
               <TabsTrigger value="improvements">Improvements</TabsTrigger>
               <TabsTrigger value="issues">Issues Found</TabsTrigger>
               <TabsTrigger value="performance">Performance Impact</TabsTrigger>
@@ -326,7 +327,8 @@ LIMIT 1000`,
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
+              <div className="h-[250px] md:h-[300px]">
+                    <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={performanceComparison} layout="vertical">
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis type="number" />
@@ -336,6 +338,7 @@ LIMIT 1000`,
                         <Bar dataKey="after" fill="#10b981" name="After" radius={[0, 4, 4, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
+              </div>
                   </CardContent>
                 </Card>
                 
@@ -347,7 +350,8 @@ LIMIT 1000`,
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
+              <div className="h-[250px] md:h-[300px]">
+                    <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={historicalData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="time" />
@@ -362,6 +366,7 @@ LIMIT 1000`,
                         />
                       </LineChart>
                     </ResponsiveContainer>
+              </div>
                   </CardContent>
                 </Card>
               </div>
@@ -378,7 +383,7 @@ LIMIT 1000`,
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { title: "Use Indexes", desc: "Add indexes on frequently queried columns", icon: Zap },
                 { title: "Limit Results", desc: "Always use LIMIT for large datasets", icon: Clock },
@@ -401,6 +406,6 @@ LIMIT 1000`,
           </CardContent>
         </Card>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

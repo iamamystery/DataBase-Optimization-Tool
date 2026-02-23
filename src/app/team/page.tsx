@@ -27,6 +27,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
+import { DashboardLayout } from "@/components/dashboard-layout";
 import {
   Dialog,
   DialogContent,
@@ -199,13 +200,13 @@ export default function TeamPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout title="Team Management" description="Manage team members and their access permissions">
+      <div className="space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold gradient-text flex items-center gap-3">
-              <Users className="w-8 h-8 text-primary" />
+            <h1 className="text-2xl md:text-3xl font-bold gradient-text flex items-center gap-3">
+              <Users className="w-6 h-6 md:w-8 md:h-8 text-primary" />
               Team Management
             </h1>
             <p className="text-muted-foreground">
@@ -269,7 +270,7 @@ export default function TeamPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           <Card className="glass-card">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -451,7 +452,7 @@ export default function TeamPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {Object.entries(roleConfig).map(([role, config]) => (
                 <div key={role} className="p-4 rounded-lg bg-muted/50">
                   <div className="flex items-center gap-2 mb-2">
@@ -501,6 +502,6 @@ export default function TeamPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
